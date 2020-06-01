@@ -1,0 +1,16 @@
+body {
+    color: #000;
+}
+
+.title {
+    font-family: 'Bookman', cursive;
+}
+
+.done {
+    text-decoration: line-through;
+    color: #cfcfcf;
+}
+
+.excel-icon {
+    height: 50px;
+}

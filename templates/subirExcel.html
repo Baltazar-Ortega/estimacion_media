@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block subir %}
+<h2 class="display-4 text-center mt-5 mb-4 title">Con Excel</h2>
+
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <h2>Subir excel</h2>
+                <h4>Instrucciones</h4>
+                <p>Los datos deben estar en una columna con header</p>
+
+                <form action="data" method="post">
+                    <input type="file" name="archivo-subido" value="">
+                    <input type="submit" name="" value="Subir" />
+                </form>
+            </div>
+        </div>
+{% endblock %}
