@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block resultadoExcel %}
+<div class="row mt-5 justify-content-center">
+    <h1 class="mb-4">Datos introducidos</h1>
+    <div class="col-md-12 d-flex justify-content-center">
+        
+        {{data | safe}}
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12 text-center">
+        <h1>Resultado</h1>
+        <p>Intervalo: {{ intervalo }}</p>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
+import operaciones as op
 
 app = Flask(__name__)
 
@@ -20,13 +21,91 @@ def data():
     if request.method == 'POST':
         file = request.form['archivo-subido']
         data = pd.read_excel(file)
-        
-        # Preguntar alfa (usar un select con 0.01 y 0.05)
-        # Obtener n
-        # Preguntar si se conoce varianza de la poblacion
 
-        # Obtener xBarra, s, lo que se necesite
-        return render_template('data.html', data=data.to_html())
+        valores = op.obtenerDatos(data)
+        n = int(len(valores))
+
+        varianza_poblacional = request.form['varianza']
+
+        if varianza_poblacional == "":
+            print("Varianza_poblacional no conocida")
+        else:
+            varianza_poblacional = float(varianza_poblacional)
+            print("Varianza_poblacional: ", varianza_poblacional)
+
+        alfa = float(request.form['inlineRadioOptions'])
+        print("Alfa: ", alfa)
+
+        intervalo = procedimiento(valores, n, varianza_poblacional, alfa)
+
+        return render_template('resultadoExcel.html', data=data.to_html(), intervalo=intervalo)
+
+def procedimiento(valores, n, varianza_poblacional, alfa):
+    if (n < 30):
+        if varianza_poblacional == "":
+            print("Usar t") # Uso el ejemplo del 10 de Febrero
+            
+            media_muestral = op.mediaMuestral(valores)
+            
+            valor_tabla_t = op.valorTablaT(alfa, n)
+            
+            cociente = op.raizCuadrada(op.varianzaMuestral(valores, media_muestral)) / op.raizCuadrada(n)
+            
+            lado_izquierdo = round(media_muestral - (valor_tabla_t * cociente), 4)
+            lado_derecho = round(media_muestral + (valor_tabla_t * cociente), 4)
+            
+            intervalo = "{izq} < u < {der}".format(izq=lado_izquierdo, der=lado_derecho)
+            print(intervalo)
+            return intervalo
+        else:
+            print("Usar z")
+
+            media_muestral = op.mediaMuestral(valores)
+
+            valor_tabla_z = op.valorTablaZ(alfa)
+
+            cociente = op.raizCuadrada(varianza_poblacional) / op.raizCuadrada(n)
+
+            lado_izquierdo = round(media_muestral - (valor_tabla_z * cociente))
+            lado_derecho = round(media_muestral + (valor_tabla_z * cociente))
+
+            intervalo = "{izq} < u < {der}".format(izq=lado_izquierdo, der=lado_derecho)
+            print(intervalo)
+            return intervalo
+
+    else:
+        if varianza_poblacional == "":
+            print("Usar z estimando varPobl con s^2")
+
+            media_muestral = op.mediaMuestral(valores)
+
+            valor_tabla_z = op.valorTablaZ(alfa)
+
+            cociente = op.raizCuadrada(op.varianzaMuestral(valores, media_muestral)) / op.raizCuadrada(n)
+
+            lado_izquierdo = round(media_muestral - (valor_tabla_z * cociente))
+            lado_derecho = round(media_muestral + (valor_tabla_z * cociente))
+
+            intervalo = "{izq} < u < {der}".format(izq=lado_izquierdo, der=lado_derecho)
+            print(intervalo)
+            return intervalo
+        else:
+            print("Usar z")
+
+            media_muestral = op.mediaMuestral(valores)
+
+            valor_tabla_z = op.valorTablaZ(alfa)
+
+            cociente = op.raizCuadrada(varianza_poblacional) / op.raizCuadrada(n)
+
+            lado_izquierdo = round(media_muestral - (valor_tabla_z * cociente))
+            lado_derecho = round(media_muestral + (valor_tabla_z * cociente))
+
+            intervalo = "{izq} < u < {der}".format(izq=lado_izquierdo, der=lado_derecho)
+            print(intervalo)
+            return intervalo
+
+
 
 
 if __name__ == '__main__':
