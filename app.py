@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for
+import os
 import pandas as pd
 import operaciones as op
 import operacionesSinExcel as opse
@@ -44,7 +45,11 @@ def datosSinExcel():
 @app.route('/data', methods=['GET', 'POST'])
 def data():
     if request.method == 'POST':
-        nombre_archivo = request.form['archivo-subido']
+        
+
+        print("Request files: ", request.files['archivo-subido'])
+
+        nombre_archivo = request.files['archivo-subido'].filename
 
         if nombre_archivo == "":
             return render_template('subirExcel.html', msg_error="Error: No introdujo archivo", error=True)
@@ -71,7 +76,6 @@ def data():
         intervalo = op.procedimiento(valores, n, varianza_poblacional, alfa)
 
         return render_template('resultadoExcel.html', data=data.to_html(), intervalo=intervalo)
-
 
 
 

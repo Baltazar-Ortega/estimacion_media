@@ -10,7 +10,7 @@
                     <h3 class="text-danger">{{ msg_error }}</h3>
                 {% endif %}
 
-                <form action="data" method="post">
+                <form action="data" method="post" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="varianza"><span class="requerimiento">Varianza de la poblacion (σ<sup>2</sup>)</span> 
@@ -37,7 +37,7 @@
 
                     <div class="form-group mt-4">
                         <label for="archivo-subido requerimiento">Archivo: </label>
-                        <input type="file" name="archivo-subido" value="" >
+                        <input type="file" name="archivo-subido" >
                     </div>
 
                     
