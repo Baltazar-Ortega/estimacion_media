@@ -61,8 +61,8 @@ def procedimiento(valores, n, varianza_poblacional, alfa):
 
             cociente = raizCuadrada(varianza_poblacional) / raizCuadrada(n)
 
-            lado_izquierdo = round(media_muestral - (valor_tabla_z * cociente))
-            lado_derecho = round(media_muestral + (valor_tabla_z * cociente))
+            lado_izquierdo = round(media_muestral - (valor_tabla_z * cociente),4)
+            lado_derecho = round(media_muestral + (valor_tabla_z * cociente),4)
 
             intervalo = "{izq} < u < {der}".format(izq=lado_izquierdo, der=lado_derecho)
             return intervalo
@@ -77,8 +77,8 @@ def procedimiento(valores, n, varianza_poblacional, alfa):
 
             cociente = raizCuadrada(varianzaMuestral(valores, media_muestral)) / raizCuadrada(n)
 
-            lado_izquierdo = round(media_muestral - (valor_tabla_z * cociente))
-            lado_derecho = round(media_muestral + (valor_tabla_z * cociente))
+            lado_izquierdo = round(media_muestral - (valor_tabla_z * cociente),4)
+            lado_derecho = round(media_muestral + (valor_tabla_z * cociente),4)
 
             intervalo = "{izq} < u < {der}".format(izq=lado_izquierdo, der=lado_derecho)
             return intervalo
@@ -91,8 +91,8 @@ def procedimiento(valores, n, varianza_poblacional, alfa):
 
             cociente = raizCuadrada(varianza_poblacional) / raizCuadrada(n)
 
-            lado_izquierdo = round(media_muestral - (valor_tabla_z * cociente))
-            lado_derecho = round(media_muestral + (valor_tabla_z * cociente))
+            lado_izquierdo = round(media_muestral - (valor_tabla_z * cociente),4)
+            lado_derecho = round(media_muestral + (valor_tabla_z * cociente),4)
 
             intervalo = "{izq} < u < {der}".format(izq=lado_izquierdo, der=lado_derecho)
             return intervalo
