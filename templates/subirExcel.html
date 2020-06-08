@@ -6,6 +6,9 @@
         <div class="row mt-5">
             <div class="col-md-12 text-center">
                 
+                {% if error == True %}
+                    <h3 class="text-danger">{{ msg_error }}</h3>
+                {% endif %}
 
                 <form action="data" method="post">
 
@@ -26,6 +29,7 @@
 
                     <h5 class="mt-4">Instrucciones para subir excel</h5>
                     <p>Los datos deben estar en una columna con header</p>
+                    <p>El excel debe estar en la carpeta del proyecto</p>
                     <p><strong>Ejemplo</strong></p>
                     <img src="/static/ejemploExcel.JPG" style="border-color: black; border-style: dotted;"/>
 
