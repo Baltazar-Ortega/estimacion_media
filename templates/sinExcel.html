@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block datosSinExcel %}
+<h1 class="text-center mt-5 mb-4 title">Sin excel</h1>
+
+        <div class="row mt-5 mb-5">
+            <div class="col-md-12 text-center">
+                    <form action="/datosSinExcel" method="POST">
+                        <p class="mt-3 font-weight-bold">Tamaño de la muestra (n)</p><input name="t_muestra">
+                        <p class="mt-3 font-weight-bold">Media <b>(x̄)</b></p>
+                        <input name="media">
+                        <p class="mt-3 font-weight-bold">De la siguiente parte, introduzca solo una de las 2:</p>
+                        <p class="mt-3 font-weight-bold">Varianza muestral (S<sup>2</sup>)</p>
+                        <input name="varianza_m">
+                        <p class="mt-3 font-weight-bold">Varianza poblacional (σ<sup>2</sup>)</p>
+                        <input name="varianza_p">
+                        <br>
+                        <p class="mt-3 font-weight-bold">Elija una α</p>
+                        <div class="form-check form-check-inline">
+                        <input required class="form-check-input" type="radio" name="inlineRadioOptions" id="alfa0.05" value="0.05">
+                        <label class="form-check-label" for="inlineRadio1">0.05</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input required class="form-check-input" type="radio" name="inlineRadioOptions" id="alfa0.01" value="0.01">
+                        <label class="form-check-label" for="inlineRadio2">0.01</label>
+                        </div>
+                        <br>
+                        <br>
+                        <input type="submit">
+                    </form>
+            </div>
+        </div>
+{% endblock %}

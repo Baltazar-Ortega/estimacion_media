@@ -6,15 +6,20 @@
         <div class="row mt-5">
             <div class="col-md-12 text-center">
                 
+                {% if error == True %}
+                    <h3 class="text-danger">{{ msg_error }}</h3>
+                {% endif %}
 
                 <form action="data" method="post">
 
                     <div class="form-group">
-                        <label for="varianza"><span class="requerimiento">Varianza de la poblacion.</span> Dejan en blanco si no la conoce</label>
-                        <input type="number"  id="varianza" name="varianza" value="">
+                        <label for="varianza"><span class="requerimiento">Varianza de la poblacion (σ<sup>2</sup>)</span> 
+                            <br>Deje en blanco si no la conoce</label>
+                            <br>
+                        <input class="mt-1" type="number" id="varianza" name="varianza" value="" step=".001">
                     </div>
 
-                    <label class="requerimiento">Alfa: </label>
+                    <label class="requerimiento mt-4">Alfa (α): </label>
                     <div class="form-check form-check-inline">
                         <input required class="form-check-input" type="radio" name="inlineRadioOptions" id="alfa0.05" value="0.05">
                         <label class="form-check-label" for="inlineRadio1">0.05</label>
@@ -26,6 +31,7 @@
 
                     <h5 class="mt-4">Instrucciones para subir excel</h5>
                     <p>Los datos deben estar en una columna con header</p>
+                    <p>El excel debe estar en la carpeta del proyecto</p>
                     <p><strong>Ejemplo</strong></p>
                     <img src="/static/ejemploExcel.JPG" style="border-color: black; border-style: dotted;"/>
 
@@ -35,7 +41,7 @@
                     </div>
 
                     
-                    <input type="submit" name="" value="Subir" class="mt-4 btn btn-primary" />
+                    <input type="submit" name="" value="Subir" class="mt-4 btn btn-primary mb-4" />
                 </form>
             </div>
         </div>
