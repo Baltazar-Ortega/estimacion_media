@@ -1,5 +1,5 @@
 category-encoders==2.1.0
-certifi==2019.11.28
+certifi==2022.12.7
 Click==7.0
 enum34==1.1.6
 Flask==1.1.1
